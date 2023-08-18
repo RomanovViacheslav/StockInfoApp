@@ -46,3 +46,17 @@ export const fetchStocksBySector = createAsyncThunk(
     }
   },
 );
+
+export const fetchTopStocks = createAsyncThunk('stocks/fetchTopStocks', async () => {
+  try {
+    const res = await stocksAgentInstance.getTopStocks();
+    console.log(res);
+
+    return mapStocks(res);
+  } catch (err) {
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    }
+    throw new Error('Ошибка');
+  }
+});

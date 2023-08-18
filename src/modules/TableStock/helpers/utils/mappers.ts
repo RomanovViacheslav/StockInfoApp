@@ -18,7 +18,8 @@ export const mapSector = (sectors: StockSectorsResponseSuccess[]): SectorEntity[
   }));
 
 export const mapStocks = (stocksData: StockDataResponseSuccess[]): StocksEntity[] =>
-  stocksData.map((stock) => ({
+  stocksData.map((stock, index) => ({
+    id: index + 1,
     symbol: stock.symbol || '--',
     companyName: stock.companyName || '--',
     currentPrice: stock.latestPrice ? String(stock.latestPrice) : '--',
@@ -27,15 +28,14 @@ export const mapStocks = (stocksData: StockDataResponseSuccess[]): StocksEntity[
       ? `${(stock.changePercent * 100).toFixed(2)}%`
       : '--',
     tradingVolume: stock.volume ? String(stock.volume) : '--',
-    lastTradeTime: stock.latestTime ? formatDate(stock.latestTime) : '--',
   }));
 
 export const mapOneStock = (stock: StockDataResponseSuccess): StocksEntity => ({
+  id: 1,
   symbol: stock.symbol || '--',
   companyName: stock.companyName || '--',
   currentPrice: stock.latestPrice ? String(stock.latestPrice) : '--',
   changePrice: stock.change ? String(stock.change) : '--',
   percentageChangePrice: stock.changePercent ? `${(stock.changePercent * 100).toFixed(2)}%` : '--',
   tradingVolume: stock.volume ? String(stock.volume) : '--',
-  lastTradeTime: stock.latestTime ? formatDate(stock.latestTime) : '--',
 });

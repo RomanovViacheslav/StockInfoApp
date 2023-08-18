@@ -7,6 +7,6 @@ export interface StyledTableProps {
 }
 
 export interface TableProps extends TablePropsMUI {
-    columnName: string[],
-    data: StocksEntity[],
+  columnName: string[];
+  data: StocksEntity[];
 }

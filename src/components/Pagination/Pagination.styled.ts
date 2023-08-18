@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { StyledPaginationProps } from './Pagination.types';
 
 export const StyledPagination = styled(Pagination)<StyledPaginationProps>(({ theme }) => ({
+  marginTop: '20px',
   '& .MuiButtonBase-root': {
     margin: '0px',
     borderRadius: '0px',

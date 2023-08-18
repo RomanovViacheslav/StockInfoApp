@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { SelectChangeEvent } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../../../../shared';
-import { fetchStockDataBySymbol, fetchStocksBySector } from '../../../../slices';
+import { fetchStockDataBySymbol, fetchStocksBySector, fetchTopStocks } from '../../../../slices';
 
 export const useFormFilters = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,7 @@ export const useFormFilters = () => {
     () => (event: SelectChangeEvent<any>) => {
       setSectorsSelect(event.target.value);
       dispatch(fetchStocksBySector(event.target.value));
+      setNameInput('');
     },
     [dispatch],
   );
@@ -26,9 +27,16 @@ export const useFormFilters = () => {
     setSectorsSelect('');
   }, []);
 
-  const handleInputAction = () => {
+  const handleInputAction = useCallback(() => {
     dispatch(fetchStockDataBySymbol(nameInput));
-  };
+    setSectorsSelect('');
+  }, [nameInput]);
+
+  const handleClickButton = useCallback(() => {
+    dispatch(fetchTopStocks());
+    setSectorsSelect('');
+    setNameInput('');
+  }, []);
 
   return {
     nameInput,
@@ -40,5 +48,6 @@ export const useFormFilters = () => {
     handleInputChange,
     handleClearSelect,
     handleInputAction,
+    handleClickButton,
   };
 };

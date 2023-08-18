@@ -1,10 +1,4 @@
-import {
-  TableContainer,
-  Table as TableMui,
-  TableRow,
-  TableCell,
-  Paper,
-} from '@mui/material';
+import { TableContainer, Table as TableMui, TableRow, TableCell, Paper } from '@mui/material';
 import React from 'react';
 import { TableProps } from './Table.types';
 import { StyledTableBody, StyledTableHead } from './Table.styled';
@@ -14,6 +8,7 @@ export const Table = ({ columnName, data }: TableProps) => (
     <TableMui sx={{ minWidth: 650 }} size="small" aria-label="a table">
       <StyledTableHead>
         <TableRow>
+          <TableCell>#</TableCell>
           {columnName.map((name) => (
             <TableCell align="left" key={name}>
               {name}

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Box } from '@mui/material';
-import { Select, TextFieldComponent } from '../../../../components';
+import { Button, Select, TextFieldComponent } from '../../../../components';
 import { useFormFilters } from './helpers';
 
 export const FiltersForm = () => {
@@ -13,11 +13,11 @@ export const FiltersForm = () => {
     handleInputChange,
     handleClearSelect,
     handleInputAction,
+    handleClickButton,
   } = useFormFilters();
 
   return (
     <Box
-      component="form"
       display="flex"
       justifyContent="space-between"
       gap="20px"
@@ -49,6 +49,7 @@ export const FiltersForm = () => {
         disabled={filtersLoading}
         onClear={() => handleClearSelect()}
       />
+      <Button onClick={handleClickButton} name="Most active" />
     </Box>
   );
 };

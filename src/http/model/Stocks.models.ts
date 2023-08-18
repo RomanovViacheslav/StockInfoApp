@@ -27,5 +27,4 @@ export interface StockDataResponseSuccess {
   change: number;
   changePercent: number;
   volume: number;
-  latestTime: number;
 }

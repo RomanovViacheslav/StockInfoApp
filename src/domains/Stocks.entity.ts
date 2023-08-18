@@ -10,11 +10,11 @@ export interface SectorEntity {
 }
 
 export interface StocksEntity {
+  id: number;
   symbol: string;
   companyName: string;
   currentPrice: string;
   changePrice: string;
   percentageChangePrice: string;
   tradingVolume: string;
-  lastTradeTime: string;
 }

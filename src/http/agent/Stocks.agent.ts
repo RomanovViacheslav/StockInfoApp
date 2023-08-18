@@ -1,8 +1,4 @@
-import {
-  StockDataResponseSuccess,
-  StockSectorsResponseSuccess,
-  StockSymbolResponseSuccess,
-} from '../model/Stocks.models';
+import { StockDataResponseSuccess, StockSectorsResponseSuccess } from '../model/Stocks.models';
 import { BasicAgent } from './Basic.agent';
 
 export class StocksAgent extends BasicAgent {
@@ -36,6 +32,15 @@ export class StocksAgent extends BasicAgent {
   async getStockDataBySymbol(symbol: string): Promise<StockDataResponseSuccess> {
     try {
       const { data } = await this._http.get(`/stock/${symbol}/quote?token=${this._token}`);
+      return data;
+    } catch (error: unknown) {
+      throw new Error((error as Error).message);
+    }
+  }
+
+  async getTopStocks(): Promise<StockDataResponseSuccess[]> {
+    try {
+      const { data } = await this._http.get(`/stock/market/list/mostactive?token=${this._token}`);
       return data;
     } catch (error: unknown) {
       throw new Error((error as Error).message);

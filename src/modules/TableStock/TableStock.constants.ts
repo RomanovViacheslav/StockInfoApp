@@ -5,5 +5,4 @@ export const COLUMN_NAMES = {
   PRICE_CHANGE: 'Price Change',
   PERCENT_CHANGE: 'Percent Change',
   VOLUME: 'Volume',
-  LAST_TRADE_TIME: 'Last Trade Time',
 };

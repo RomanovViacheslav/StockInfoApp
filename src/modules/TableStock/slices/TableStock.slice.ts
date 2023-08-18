@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { fetchSectors, fetchStockDataBySymbol, fetchStocksBySector } from './TableStock.thunks';
+import { fetchSectors, fetchStockDataBySymbol, fetchStocksBySector, fetchTopStocks } from './TableStock.thunks';
 import { TableStockState } from '../TableStock.types';
 
 const initialState: TableStockState = {
@@ -32,6 +32,7 @@ const tableStockSlice = createSlice({
       })
       .addCase(fetchStocksBySector.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchStocksBySector.fulfilled, (state, action) => {
         state.stocks = action.payload;
@@ -45,6 +46,7 @@ const tableStockSlice = createSlice({
       })
       .addCase(fetchStockDataBySymbol.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchStockDataBySymbol.fulfilled, (state, action) => {
         state.stocks = [action.payload];
@@ -53,6 +55,20 @@ const tableStockSlice = createSlice({
         state.loading = false;
       })
       .addCase(fetchStockDataBySymbol.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? 'Ошибка';
+      })
+      .addCase(fetchTopStocks.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTopStocks.fulfilled, (state, action) => {
+        state.stocks = action.payload;
+        state.totalCount = action.payload.length;
+        state.currentPage = 1;
+        state.loading = false;
+      })
+      .addCase(fetchTopStocks.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message ?? 'Ошибка';
       });
