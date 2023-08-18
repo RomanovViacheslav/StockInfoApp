@@ -30,8 +30,7 @@ StockInfoApp было разработано с использованием с�
 
 Запустите приложение:
    ```bash
-   git clone https://github.com/your-username/StockInfoApp.git
-   cd StockInfoApp
+   npm start
 ```
 
 Приложение будет доступно в вашем браузере по адресу http://localhost:3000.
